@@ -1,0 +1,44 @@
+generated: '2026-07-19'
+method: probed
+source: live HTTP probe of thelevelup.com
+host: https://thelevelup.com
+result: none
+notes: >-
+  No /.well-known/ discovery surface exists for LevelUp. Every path on thelevelup.com —
+  including all /.well-known/* paths and /llms.txt — 302-redirects to the Grubhub homepage
+  (https://www.grubhub.com/) following the 2018 Grubhub acquisition. The probe therefore
+  returns HTTP 200 for every path, but the body is the Grubhub homepage, not a discovery
+  document. No document was saved and no WellKnown or SecurityTxt pointer is wired, because
+  no discovery document is actually published. The historical API hosts
+  (api.thelevelup.com, sandbox.thelevelup.com, developer.thelevelup.com) do not resolve.
+documents: []
+probes:
+- path: /.well-known/security.txt
+  status: 200
+  redirected_to: https://www.grubhub.com/
+  document: false
+- path: /.well-known/openid-configuration
+  status: 200
+  redirected_to: https://www.grubhub.com/
+  document: false
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  redirected_to: https://www.grubhub.com/
+  document: false
+- path: /.well-known/api-catalog
+  status: 200
+  redirected_to: https://www.grubhub.com/
+  document: false
+- path: /.well-known/ai-plugin.json
+  status: 200
+  redirected_to: https://www.grubhub.com/
+  document: false
+- path: /llms.txt
+  status: 200
+  redirected_to: https://www.grubhub.com/
+  document: false
+dead_hosts:
+- {host: api.thelevelup.com, dns: NXDOMAIN}
+- {host: sandbox.thelevelup.com, dns: NXDOMAIN}
+- {host: developer.thelevelup.com, dns: NXDOMAIN}
+- {host: blog.thelevelup.com, dns: NXDOMAIN}

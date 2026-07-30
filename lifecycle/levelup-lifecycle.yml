@@ -1,0 +1,50 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://github.com/TheLevelUp/levelup-sdk-ruby (README + gem description),
+  https://github.com/TheLevelUp/levelup-sdk-csharp (README), https://rubygems.org/gems/levelup,
+  live DNS/HTTP probes of thelevelup.com
+status: retired
+summary: >-
+  The LevelUp platform API is retired. SCVNGR, Inc. d/b/a LevelUp was acquired by Grubhub in
+  2018; the developer portal, API reference, sandbox and production API hosts have all been
+  decommissioned and thelevelup.com now redirects wholesale to grubhub.com. Both first-party
+  SDKs carry explicit first-party deprecation notices and their repositories are archived.
+versioning:
+  scheme: uri-path
+  versions: [v14, v15]
+  current: v15
+  evidence: >-
+    Levelup::Configuration DEFAULT_API_VERSION = :v15, VERSIONS = {v14, v15} in
+    levelup-sdk-ruby lib/levelup/configuration.rb
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  notices:
+  - source: https://rubygems.org/gems/levelup
+    text: >-
+      "DEPRECATION WARNING: This gem is now deprecated. Please do not use it for new projects
+      since it is unmaintained."
+  - source: https://github.com/TheLevelUp/levelup-sdk-csharp
+    text: "[This Library is No Longer Being Maintained]"
+  - source: https://github.com/TheLevelUp/levelup-sdk-ruby
+    text: "DEPRECATED - LevelUp Ruby client gem (repository description); repository archived"
+retirement:
+  acquirer: Grubhub
+  acquisition_year: 2018
+  legal_entity: SCVNGR, Inc. d/b/a LevelUp
+  evidence:
+  - {check: 'https://thelevelup.com', result: '200, redirects to https://www.grubhub.com/'}
+  - {check: 'dns api.thelevelup.com', result: NXDOMAIN}
+  - {check: 'dns sandbox.thelevelup.com', result: NXDOMAIN}
+  - {check: 'dns developer.thelevelup.com', result: NXDOMAIN}
+  - {check: 'dns blog.thelevelup.com', result: NXDOMAIN}
+  - {check: 'github.com/TheLevelUp SDK repos', result: 'archived (2018-07 ruby, 2021-04 csharp)'}
+sla: null
+status_page: null
+surviving_surfaces:
+- {surface: GitHub organization, url: 'https://github.com/TheLevelUp', status: live, public_repos: 26}
+- {surface: MyGet NuGet feed, url: 'https://www.myget.org/gallery/levelup', status: live}
+- {surface: RubyGems package, url: 'https://rubygems.org/gems/levelup', status: live}
+- {surface: Domain DNS/TLS, url: 'https://thelevelup.com', status: 'live, redirects to grubhub.com'}
+deprecated_operations: []

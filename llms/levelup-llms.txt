@@ -1,0 +1,54 @@
+# LevelUp
+
+> LevelUp (SCVNGR, Inc. d/b/a LevelUp) was a Boston-based mobile payments and customer-loyalty
+> platform whose REST API let point-of-sale systems and e-commerce apps accept LevelUp payments,
+> issue QR-code order tokens, and run merchant-funded loyalty campaigns. LevelUp was acquired by
+> Grubhub in 2018. The platform API is RETIRED: developer.thelevelup.com, api.thelevelup.com and
+> sandbox.thelevelup.com no longer resolve, and thelevelup.com redirects to grubhub.com. This
+> profile is a historical record assembled from LevelUp's surviving first-party open-source SDKs
+> and package feeds. Do not attempt to integrate — there is no live API.
+
+## Status
+
+- Lifecycle: retired (acquired by Grubhub, 2018) — [lifecycle](lifecycle/levelup-lifecycle.yml)
+- Last API version: v15 (URI-path versioning; v14 also supported)
+- No OpenAPI, AsyncAPI, GraphQL or MCP server was ever published
+
+## Surviving surfaces
+
+- [GitHub organization](https://github.com/TheLevelUp) — 26 public repositories, SDK repos archived
+- [MyGet NuGet feed](https://www.myget.org/gallery/levelup) — first-party .NET packages, still live
+- [RubyGems: levelup](https://rubygems.org/gems/levelup) — first-party Ruby SDK, deprecated
+- [C# SDK source](https://github.com/TheLevelUp/levelup-sdk-csharp) — archived, Apache-2.0
+- [Ruby SDK source](https://github.com/TheLevelUp/levelup-sdk-ruby) — archived, MIT
+
+## Dead surfaces
+
+- http://developer.thelevelup.com/api-reference/ — NXDOMAIN (former API reference)
+- https://api.thelevelup.com/ — NXDOMAIN (former production base URL)
+- https://sandbox.thelevelup.com/ — NXDOMAIN (former sandbox base URL)
+- http://blog.thelevelup.com — NXDOMAIN
+- https://www.thelevelup.com/security-response — redirects to grubhub.com
+
+## API shape (reconstructed from first-party SDKs)
+
+- Base URL pattern: `https://api.thelevelup.com/v15/{resource}`
+- Auth: `Authorization: token <access_token>`, with `merchant="..."` / `user="..."` variants
+- Media type: application/json request and response
+- Pagination: RFC 8288 `Link` header carrying the next-page URL
+- Errors: JSON array of `{"error": {"object", "property", "message"}}` — not RFC 9457
+- Transport: TLS 1.2 required for PCI compliance
+- Resources: access_tokens, apps, app_locations, app_users, credit_cards, orders, merchant_orders,
+  location_orders, user_orders, merchant_locations, merchant_funded_credits, location_credit,
+  permissions_requests, qr_codes, users, user_addresses
+
+## Artifacts
+
+- [Packages and SDKs](packages/levelup-packages.yml)
+- [Authentication](authentication/levelup-authentication.yml)
+- [API conventions](conventions/levelup-conventions.yml)
+- [Error envelope](errors/levelup-problem-types.yml)
+- [Lifecycle and retirement](lifecycle/levelup-lifecycle.yml)
+- [Standards conformance](conformance/levelup-conformance.yml)
+- [Domain security](security/levelup-domain-security.yml)
+- [Well-known probe](well-known/levelup-well-known.yml)

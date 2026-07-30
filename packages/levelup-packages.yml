@@ -1,0 +1,104 @@
+generated: '2026-07-19'
+method: searched
+source: https://rubygems.org/gems/levelup, https://www.myget.org/gallery/levelup, https://github.com/TheLevelUp
+notes: >-
+  LevelUp (SCVNGR, Inc. d/b/a LevelUp) was acquired by Grubhub in 2018. Every package
+  below is first-party but unmaintained; the GitHub source repositories are archived and
+  the LevelUp REST API hosts (api.thelevelup.com, sandbox.thelevelup.com) no longer resolve.
+  Packages are catalogued here for the historical record, not as an active integration path.
+  No LevelUp client library was found on public nuget.org, Maven Central, npm or PyPI —
+  the .NET libraries were distributed only from the vendor-hosted MyGet feed below.
+registries:
+- name: MyGet (vendor-hosted NuGet feed)
+  gallery: https://www.myget.org/gallery/levelup
+  nuget_v3: https://www.myget.org/F/levelup/api/v3/index.json
+  nuget_v2: https://www.myget.org/F/levelup/api/v2
+  status: 200
+  probed: '2026-07-19'
+packages:
+- language: ruby
+  registry: rubygems
+  name: levelup
+  version: 0.9.6
+  url: https://rubygems.org/gems/levelup
+  install: gem install levelup
+  source: https://github.com/TheLevelUp/levelup-sdk-ruby
+  official: true
+  deprecated: true
+  deprecation_notice: >-
+    "DEPRECATION WARNING: This gem is now deprecated. Please do not use it for new projects
+    since it is unmaintained." (published gem description)
+  authors: LevelUp POS Team
+  downloads: 20151
+  license: MIT
+- language: csharp
+  registry: myget
+  name: LevelUp.Api.Client
+  version: 9.3.0
+  url: https://www.myget.org/gallery/levelup
+  install: nuget install LevelUp.Api.Client -Source https://www.myget.org/F/levelup/api/v3/index.json
+  source: https://github.com/TheLevelUp/levelup-sdk-csharp
+  official: true
+  deprecated: true
+  license: Apache-2.0
+- language: csharp
+  registry: myget
+  name: LevelUp.Api.Http
+  version: 9.3.0
+  url: https://www.myget.org/gallery/levelup
+  install: nuget install LevelUp.Api.Http -Source https://www.myget.org/F/levelup/api/v3/index.json
+  source: https://github.com/TheLevelUp/levelup-sdk-csharp
+  official: true
+  deprecated: true
+  license: Apache-2.0
+- language: csharp
+  registry: myget
+  name: LevelUp.Api.Utilities
+  version: 3.0.6
+  url: https://www.myget.org/gallery/levelup
+  official: true
+  deprecated: true
+- language: csharp
+  registry: myget
+  name: LevelUp.Pos.ProposedOrderCalculator
+  version: 1.3.2-master0001
+  url: https://www.myget.org/gallery/levelup
+  source: https://github.com/TheLevelUp/pos-library-proposedorders-csharp
+  official: true
+  deprecated: true
+  license: Apache-2.0
+- language: java
+  registry: none
+  name: pos-library-proposed-orders-java
+  url: https://github.com/TheLevelUp/pos-library-proposed-orders-java
+  install: build from source
+  official: true
+  deprecated: true
+  license: Apache-2.0
+  note: Source-only; no Maven Central coordinates published.
+pos_integration_packages:
+  note: >-
+    Point-of-sale integration adapters published to the same first-party MyGet feed.
+    Cataloged for completeness; all unmaintained.
+  names:
+  - LevelUp-Aloha-NET40
+  - LevelUp-Aloha-WPF
+  - LevelUp-Aloha-WinForms
+  - LevelUp-Aloha-WinForms-NoSupport
+  - LevelUp-Micros-3700
+  - LevelUp-Micros-3700-NET40
+  - LevelUp-Dinerware
+  - LevelUp-Agilysys-InfoGenesis
+  - LevelUpConfigTool
+  - LevelUpFrontEndConfigTool
+  - Grubhub.ProposedOrders
+  - Grubhub.JsonEnvelopeSerializer
+source_repositories:
+  organization: https://github.com/TheLevelUp
+  public_repos: 26
+  first_party_sdk_repos:
+  - {name: levelup-sdk-csharp, language: C#, archived: true, last_push: '2021-04-26', license: Apache-2.0}
+  - {name: levelup-sdk-ruby, language: Ruby, archived: true, last_push: '2018-07-16', license: MIT}
+  - {name: pos-library-proposedorders-csharp, language: C#, archived: true, last_push: '2021-04-09', license: Apache-2.0}
+  - {name: pos-library-proposed-orders-java, language: Java, archived: true, last_push: '2021-04-09', license: Apache-2.0}
+  - {name: pos-tls-patcher, language: PowerShell, archived: false, last_push: '2024-01-24', license: Apache-2.0}

@@ -1,0 +1,39 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://github.com/TheLevelUp/levelup-sdk-ruby (lib/levelup/responses/error.rb,
+  lib/levelup/errors/invalid_request.rb, lib/levelup/errors/unauthenticated.rb)
+format: custom-json-array
+rfc9457: false
+status: retired
+notes: >-
+  LevelUp did not use RFC 9457 problem+json. Unsuccessful requests returned a JSON array of
+  error objects; the SDK wrapped them in Levelup::Responses::Error carrying the array, the HTTP
+  status code and the response headers. No OpenAPI was ever published and the error reference on
+  developer.thelevelup.com has been decommissioned, so no per-status catalog of named error types
+  survives — only the envelope and the SDK-level error classes below. No error codes are invented here.
+envelope:
+  media_type: application/json
+  shape: 'array of {"error": {"object": "...", "property": "...", "message": "..."}}'
+  fields:
+  - {name: error.object, description: The LevelUp API object causing the error}
+  - {name: error.property, description: The property of that object causing the error}
+  - {name: error.message, description: Human-readable error message}
+  status_code: carried on the HTTP response, surfaced as Error#status_code
+  headers: carried on the HTTP response, surfaced as Error#headers
+  malformed_response_fallback: >-
+    When the body is not an array the SDK substitutes a single synthetic error with the message
+    "The API returned an unexpected response. This is likely due to an incorrectly defined base URL."
+problems: []
+client_error_classes:
+- name: Levelup::Errors::InvalidRequest
+  raised_when:
+  - a request is sent via an HTTP method outside [DELETE, GET, POST, PUT]
+  - next page is fetched at the final page of a paginated list
+  source: lib/levelup/errors/invalid_request.rb, lib/levelup/requests/base.rb
+- name: Levelup::Errors::Unauthenticated
+  raised_when: the request requires an access token that has not been supplied
+  source: lib/levelup/errors/unauthenticated.rb
+cross_links:
+  conventions: conventions/levelup-conventions.yml
+  authentication: authentication/levelup-authentication.yml

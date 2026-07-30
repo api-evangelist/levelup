@@ -1,0 +1,113 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://github.com/TheLevelUp/levelup-sdk-ruby (lib/levelup/configuration.rb,
+  lib/levelup/requests/base.rb, lib/levelup/responses/*.rb, lib/levelup/requests/list_app_locations.rb),
+  https://github.com/TheLevelUp/levelup-sdk-csharp (README)
+status: retired
+notes: >-
+  Cross-cutting request/response semantics of the LevelUp platform API, reconstructed from the
+  first-party open-source SDKs. The developer portal that documented these
+  (developer.thelevelup.com) has been decommissioned; the SDKs are the surviving authoritative
+  source. No OpenAPI was ever published, so nothing here is derived from a spec.
+base_urls:
+  production: https://api.thelevelup.com/
+  sandbox: https://sandbox.thelevelup.com/
+  note: Both hosts are NXDOMAIN as of 2026-07-19.
+versioning:
+  style: uri-path
+  pattern: '{base_url}{version}/{resource}'
+  versions: [v14, v15]
+  default: v15
+  breaking_change_signal: new version segment
+authentication:
+  style: custom Authorization token scheme (not OAuth 2.0)
+  header: Authorization
+  formats:
+  - 'token <app_access_token>'
+  - 'token merchant="<merchant_access_token>"'
+  - 'token user="<user_access_token>"'
+  - 'token merchant="<merchant_access_token>", user="<user_access_token>"'
+  detail: authentication/levelup-authentication.yml
+content_types:
+  request: application/json
+  response: application/json
+  default_headers:
+    Accept: application/json
+    Content-Type: application/json
+  source: levelup-sdk-ruby DEFAULT_HEADERS
+methods_supported: [GET, POST, PUT, DELETE]
+pagination:
+  style: link-header
+  standard: RFC 5988 / RFC 8288 Link header
+  mechanism: >-
+    Paginated list responses return a Link header containing the absolute URL of the next page
+    in angle brackets; the SDK extracts it with /\<([^>]+)\>/ and exposes next_page / next.
+  response_fields: []
+  params: []
+  source: levelup-sdk-ruby lib/levelup/requests/list_app_locations.rb, responses/success_paginated.rb
+error_envelope:
+  format: custom-json-array
+  rfc9457: false
+  shape: 'array of {"error": {"object": "...", "property": "...", "message": "..."}}'
+  fields:
+  - {name: object, description: The LevelUp API object causing the error}
+  - {name: property, description: The property of that object causing the error}
+  - {name: message, description: Human-readable error message}
+  status_code: propagated from the HTTP status
+  detail: errors/levelup-problem-types.yml
+  source: levelup-sdk-ruby lib/levelup/responses/error.rb
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No idempotency key header, parameter or retry contract is documented in either first-party
+    SDK. No Idempotency pointer is wired in apis.yml because the capability is not present.
+rate_limiting:
+  documented: false
+  headers: []
+request_tracing:
+  documented: false
+  headers: []
+field_expansion:
+  documented: false
+metadata:
+  documented: false
+transport_security:
+  tls_minimum: TLS 1.2
+  reason: PCI security standards compliance
+  applies_to: [www.thelevelup.com, api.thelevelup.com]
+  client_tooling: https://github.com/TheLevelUp/pos-tls-patcher
+resource_surface:
+  note: >-
+    Endpoint families exposed by the first-party Ruby SDK (lib/levelup/endpoints/), the closest
+    surviving inventory of the API's resources.
+  endpoints:
+  - access_tokens
+  - apps
+  - specific_app
+  - app_locations
+  - app_users
+  - credit_cards
+  - location_credit
+  - location_merchant_funded_credit
+  - location_orders
+  - merchant_funded_credits
+  - merchant_locations
+  - merchant_orders
+  - orders
+  - specific_order
+  - permissions_requests
+  - specific_permissions_request
+  - qr_codes
+  - specific_location
+  - specific_merchant
+  - user_addresses
+  - user_orders
+  - users
+cross_links:
+  authentication: authentication/levelup-authentication.yml
+  errors: errors/levelup-problem-types.yml
+  lifecycle: lifecycle/levelup-lifecycle.yml
+  conformance: conformance/levelup-conformance.yml
+  packages: packages/levelup-packages.yml

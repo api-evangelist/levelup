@@ -1,0 +1,53 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://github.com/TheLevelUp/levelup-sdk-csharp (README: "TLS Requirements For The LevelUp API",
+  "Responsible Disclosure Policy"), https://github.com/TheLevelUp/levelup-sdk-ruby,
+  live probe of thelevelup.com
+status: retired
+notes: >-
+  Standards posture reconstructed from first-party SDK documentation. LevelUp's live compliance
+  and trust pages were decommissioned after the Grubhub acquisition, so the PCI claim below is
+  evidenced only by the archived first-party README, not by a currently published compliance
+  program. For that reason no Compliance pointer is wired in apis.yml.
+standards:
+- id: pci-dss
+  conforms: true
+  evidence: >-
+    "As part of compliance with PCI security standards, LevelUp requires that all HTTPS
+    connections to LevelUp (www.thelevelup.com and api.thelevelup.com) are using TLS 1.2."
+    — levelup-sdk-csharp README
+  currently_published: false
+- id: tls-1.2
+  conforms: true
+  evidence: TLS 1.2 mandated for all API connections; first-party pos-tls-patcher utility shipped to enable it on legacy Windows
+  currently_published: false
+- id: oauth2
+  conforms: false
+  evidence: >-
+    Custom "token" Authorization scheme with app/merchant/user access tokens; no OAuth 2.0
+    authorization server, grant types or scopes documented in either SDK.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as a bare JSON array of {error:{object,property,message}}, not application/problem+json
+- id: rfc8288-link-pagination
+  conforms: true
+  evidence: paginated list responses return a Link header with the next-page URL in angle brackets (levelup-sdk-ruby list_app_locations.rb)
+- id: json-api
+  conforms: false
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key header or retry contract documented in either first-party SDK
+- id: semver
+  conforms: true
+  evidence: '"The LevelUp C# SDK conforms to Semantic Versioning" — levelup-sdk-csharp README (applies to the SDK, not the API)'
+  applies_to: sdk
+- id: rfc8594-sunset-header
+  conforms: unknown
+- id: fapi
+  conforms: false
+- id: gdpr
+  conforms: unknown
+certifications_published: []
