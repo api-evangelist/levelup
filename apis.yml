@@ -1,20 +1,49 @@
 aid: levelup
 name: LevelUp
-description: 'LevelUp is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.'
+description: 'LevelUp (SCVNGR, Inc. d/b/a LevelUp) was a Boston-based mobile payments and customer-loyalty
+  platform whose REST API let point-of-sale systems and e-commerce applications accept LevelUp payments,
+  issue QR-code order tokens, manage merchant locations, and run merchant-funded loyalty and credit
+  campaigns. The platform shipped first-party C#, Ruby and Java SDKs plus packaged point-of-sale adapters
+  for Aloha, Micros 3700, Dinerware and Agilysys InfoGenesis. LevelUp was acquired by Grubhub in 2018 and
+  the platform API is now RETIRED: the developer portal, API reference, sandbox and production hosts have
+  all been decommissioned and thelevelup.com redirects to grubhub.com. This profile is a historical record
+  reconstructed from LevelUp''s surviving first-party open-source SDKs and package feeds.'
 url: https://raw.githubusercontent.com/api-evangelist/levelup/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/1521628?v=4
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - gv
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-surviving-first-party-sdks
+x-lifecycle-status: retired
+x-acquired-by: Grubhub
+x-acquisition-year: 2018
+x-legal-entity: SCVNGR, Inc. d/b/a LevelUp
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Consumer
+- Payments
+- Mobile Payments
+- Point of Sale
+- Loyalty
+- Restaurants
+- Retired
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,4 +52,33 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://thelevelup.com
+  url: https://thelevelup.com
+- type: GitHubOrganization
+  url: https://github.com/TheLevelUp
+- type: SourceCode
+  url: https://github.com/TheLevelUp/levelup-sdk-csharp
+- type: Packages
+  url: packages/levelup-packages.yml
+- type: SDKs
+  url: packages/levelup-packages.yml
+- type: Authentication
+  url: authentication/levelup-authentication.yml
+- type: Conventions
+  url: conventions/levelup-conventions.yml
+- type: ErrorCatalog
+  url: errors/levelup-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/levelup-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/levelup-lifecycle.yml
+- type: Conformance
+  url: conformance/levelup-conformance.yml
+- type: DomainSecurity
+  url: security/levelup-domain-security.yml
+- type: LLMsTxt
+  url: llms/levelup-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
