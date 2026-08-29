@@ -9,6 +9,18 @@ description: 'LevelUp (SCVNGR, Inc. d/b/a LevelUp) was a Boston-based mobile pay
   all been decommissioned and thelevelup.com redirects to grubhub.com. This profile is a historical record
   reconstructed from LevelUp''s surviving first-party open-source SDKs and package feeds.'
 url: https://raw.githubusercontent.com/api-evangelist/levelup/refs/heads/main/apis.yml
+deliveryModel:
+  model: self-hosted
+  license: Apache-2.0
+  open_source: true
+  commercial: false
+  callable_host: false
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
